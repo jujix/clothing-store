@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import  { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { auth } from "../../firebase/firebase.utils";
-import CartIcon from '../cart-icon/cart-icon';
-import CartDropdown from '../cart-dropdown/cart-dropdown';
+import CartIcon from "../cart-icon/cart-icon";
+import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
@@ -37,9 +37,9 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
-currentUser,
-hidden
-})
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
+});
 
 export default connect(mapStateToProps)(Header);
