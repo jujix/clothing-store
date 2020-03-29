@@ -1,15 +1,7 @@
 E-commerce site, built with up to date React functionalities
 
 
-## Project setup at root level
-
-```
-npm install
-npm run dev
-```
-
-## Project setup inside the client
-
+## Project setup
 ```
 npm install
 npm start
