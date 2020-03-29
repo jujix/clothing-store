@@ -1,9 +1,13 @@
 E-commerce site, built with up to date React functionalities
 
 
-## Project setup at root level
+## Project setup starting the client and server at the same time
 
 ```
+cd client/
+npm install
+
+cd ..
 npm install
 npm run dev
 ```
