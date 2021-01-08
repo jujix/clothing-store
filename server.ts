@@ -1,9 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require("path");
-const compression = require("compression");
-const enforce = require("express-sslify");
+import express, {Request, Response} from "express";
+import cors from "cors"
+import bodyParser from "body-parser";
+import path from "path"
+import compression from "compression";
+import enforce from "express-sslify"
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -21,28 +21,27 @@ if (process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirname, "client/build")));
 
-  app.get("*", function (req, res) {
+  app.get("*", function (req: express.Request, res: express.Response) {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
 
-app.listen(port, (error) => {
-  if (error) throw error;
+app.listen(port, () => {
   console.log("Server running on port " + port);
 });
 
-app.get("/service-worker.js", (req, res) => {
+app.get("/service-worker.js", (req: Request, res: Response) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "service-worker.js"));
 });
 
-app.post("/payment", (req, res) => {
+app.post("/payment", (req: Request, res: Response) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
     currency: "usd",
   };
 
-  stripe.charges.create(body, (stripeErr, stripeRes) => {
+  stripe.charges.create(body, (stripeErr: any, stripeRes: any) => {
     if (stripeErr) {
       res.status(500).send({ error: stripeErr });
     } else {
